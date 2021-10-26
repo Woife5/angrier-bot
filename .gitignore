@@ -1,0 +1,9 @@
+# Ignore config file
+config.json
+
+# Ignore the node_modules folder
+node_modules
+
+# Ignore default MacOS and Windows files
+.DS_Store
+Thumbs.db
