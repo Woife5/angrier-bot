@@ -7,3 +7,6 @@ node_modules
 # Ignore default MacOS and Windows files
 .DS_Store
 Thumbs.db
+
+# Ignore the compiled JavaScript files
+build
