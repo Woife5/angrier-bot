@@ -3,7 +3,7 @@ import { ICommand } from 'wokcommands';
 const fetch = require('node-fetch');
 
 interface IYesNo {
-    answer: string;
+    answer: 'yes' | 'no' | 'maybe';
     forced: boolean;
     image: string;
 }
