@@ -5,6 +5,8 @@ const bookNames = require('../../data/book-names.json') as IBookNames;
 const bibleAPI = 'https://getbible.net/v2/elberfelder/';
 const numberOfBooks = 66;
 
+import { getRandomInt } from '../helpers';
+
 interface IBookNames {
     [key: string]: number;
 }
@@ -85,7 +87,7 @@ export default {
             }
         } else {
             // No book defined, get a random book number
-            bookNumber = Math.floor(Math.random() * numberOfBooks) + 1; // TODO write dedicated getRandomInt function
+            bookNumber = getRandomInt(1, numberOfBooks);
         }
         // end of book check
 
@@ -104,14 +106,14 @@ export default {
         let chapterNumber: number;
         if (int_chapter) {
             if (book.chapters.length >= int_chapter && int_chapter > 0) {
+                chapterNumber = Number(int_chapter);
+            } else {
                 interaction.reply({ content: 'Invalid chapter number!', ephemeral: true });
                 return;
-            } else {
-                chapterNumber = Number(int_chapter);
             }
         } else {
             // No chapter defined, get a random chapter number
-            chapterNumber = 1; // TODO get random chapter
+            chapterNumber = getRandomInt(1, book.chapters.length);
         }
         // end of chapter check
 
@@ -119,14 +121,14 @@ export default {
         let verseNumber: number;
         if (int_verse) {
             if (book.chapters[chapterNumber - 1].verses.length >= int_verse && int_verse > 0) {
+                verseNumber = int_verse;
+            } else {
                 interaction.reply({ content: 'Invalid verse number!', ephemeral: true });
                 return;
-            } else {
-                verseNumber = int_verse;
             }
         } else {
             // No verse defined, get a random verse number
-            verseNumber = 1; // TODO get random verse
+            verseNumber = getRandomInt(1, book.chapters[chapterNumber - 1].verses.length);
         }
         // end of verse check
 
