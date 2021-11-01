@@ -132,10 +132,25 @@ export default {
         }
         // end of verse check
 
+        let verseText = book.chapters[chapterNumber - 1].verses[verseNumber - 1].text;
+
+        // Replace some words in the text with some random others
+        verseText = verseText.replaceAll('König', 'Paul');
+        verseText = verseText.replaceAll('Gott', 'Paul');
+        verseText = verseText.replaceAll('Christus', 'Felix');
+        verseText = verseText.replaceAll('Mose', 'Valentin');
+        verseText = verseText.replaceAll('Priester', 'Roman');
+        verseText = verseText.replaceAll('Diener', 'Irmi');
+        verseText = verseText.replaceAll('Jehovas', 'Angrys');
+        verseText = verseText.replaceAll('Jesu Christi', 'Wolfgang Rader');
+        verseText = verseText.replaceAll('Engel', 'Axel');
+        verseText = verseText.replaceAll('Sünder', 'Thomas');
+        verseText = verseText.replaceAll('Gottseligkeit', 'Angrylosigkeit (a.k.a. Freude)');
+
         const answer = new MessageEmbed()
             .setColor('YELLOW')
             .setTitle(`Bible Verse`)
-            .setDescription(book.chapters[chapterNumber - 1].verses[verseNumber - 1].text)
+            .setDescription(verseText)
             .setFooter(`${book.name} ${chapterNumber}:${verseNumber}`);
 
         return answer;
