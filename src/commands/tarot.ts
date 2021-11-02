@@ -1,13 +1,9 @@
 import { Interaction, MessageEmbed } from 'discord.js';
 import { ICommand } from 'wokcommands';
+import { Tarot } from '../interfaces';
 const wait = require('util').promisify(setTimeout);
 
-interface ITarot {
-    text: string;
-    media?: string;
-}
-
-const tarots = require('../../data/angry-tarot.json') as ITarot[];
+const tarots = require('../../data/angry-tarot.json') as Tarot.ITarot[];
 const angrys = require('../../data/angry-emojis.json');
 
 export default {

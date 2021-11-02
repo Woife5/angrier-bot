@@ -1,40 +1,12 @@
 import { Interaction, MessageEmbed, Constants } from 'discord.js';
 import { ICommand } from 'wokcommands';
+import { Bible } from '../interfaces';
 const fetch = require('node-fetch');
-const bookNames = require('../../data/book-names.json') as IBookNames;
+const bookNames = require('../../data/book-names.json') as Bible.IBookNames;
 const bibleAPI = 'https://getbible.net/v2/elberfelder/';
 const numberOfBooks = 66;
 
 import { getRandomInt } from '../helpers';
-
-interface IBookNames {
-    [key: string]: number;
-}
-
-interface IBibleVerse {
-    chapter: number;
-    verse: number;
-    name: string;
-    text: string;
-}
-
-interface IBibleChapter {
-    chapter: number;
-    name: string;
-    verses: IBibleVerse[];
-}
-
-interface IBibleBook {
-    translation: 'Elberfelder (1871)';
-    abbreviation: 'elberfelder';
-    lang: 'de';
-    language: 'German';
-    direction: 'LTR';
-    encoding: 'UTF-8';
-    nr: number;
-    name: string;
-    chapters: IBibleChapter[];
-}
 
 export default {
     category: 'Angrycore',
@@ -92,7 +64,7 @@ export default {
         // end of book check
 
         // Download provided book
-        let book: IBibleBook;
+        let book: Bible.IBibleBook;
         try {
             const response = await fetch(`${bibleAPI}${bookNumber}.json`);
             book = await response.json();
