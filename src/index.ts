@@ -29,9 +29,14 @@ client.on('ready', () => {
     });
 });
 
-client.on('messageCreate', message => {
-    if (message.content === 'ping') {
-        message.reply('Pong!');
+client.on('messageCreate', async message => {
+    // If the message includes the word "angry" add an angry reaction to the message
+    if (message.content.toLowerCase().includes('angry')) {
+        try {
+            await message.react('😡');
+        } catch (error) {
+            console.error(error);
+        }
     }
 });
 
