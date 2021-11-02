@@ -31,7 +31,7 @@ interface IBibleBook {
     language: 'German';
     direction: 'LTR';
     encoding: 'UTF-8';
-    nr: Number;
+    nr: number;
     name: string;
     chapters: IBibleChapter[];
 }
