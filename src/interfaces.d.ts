@@ -1,3 +1,6 @@
+import { CommandInteraction, Interaction } from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
+
 export namespace Bible {
     interface IBookNames {
         [key: string]: number;
@@ -29,4 +32,9 @@ export namespace Yesno {
         forced: boolean;
         image: string;
     }
+}
+
+export interface ICommand {
+    data: Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
+    execute: (interaction: CommandInteraction) => void;
 }

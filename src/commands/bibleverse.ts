@@ -1,6 +1,7 @@
-import { Interaction, MessageEmbed, Constants } from 'discord.js';
-import { ICommand } from 'wokcommands';
-import { Bible } from '../interfaces';
+import { CommandInteraction, MessageEmbed } from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { Bible, ICommand } from '../interfaces';
+
 const fetch = require('node-fetch');
 const bookNames = require('../../data/book-names.json') as Bible.IBookNames;
 const bibleAPI = 'https://getbible.net/v2/elberfelder/';
@@ -9,31 +10,22 @@ const numberOfBooks = 66;
 import { getRandomInt } from '../helpers';
 
 export default {
-    category: 'Angrycore',
-    description: 'Get a random bible verse. Optionally via the arguments a specific verse can be requested.',
-    options: [
-        {
-            name: 'book',
-            description: 'The number of the book within the bible (1-66)',
-            required: false,
-            type: Constants.ApplicationCommandOptionTypes.STRING,
-        },
-        {
-            name: 'chapter',
-            description: 'The number or name of the chapter within the book',
-            required: false,
-            type: Constants.ApplicationCommandOptionTypes.INTEGER,
-        },
-        {
-            name: 'verse',
-            description: 'The number of the verse within the chapter',
-            required: false,
-            type: Constants.ApplicationCommandOptionTypes.INTEGER,
-        },
-    ],
-    slash: true,
-    testOnly: true,
-    callback: async ({ interaction }) => {
+    data: new SlashCommandBuilder()
+        .setName('bibleverse')
+        .setDescription('Get a random bible verse. Optionally via the arguments a specific verse can be requested.')
+        .addStringOption(option =>
+            option
+                .setName('book')
+                .setDescription('The name or number of the book within the bible (1-66).')
+                .setRequired(false)
+        )
+        .addIntegerOption(option =>
+            option.setName('chapter').setDescription('The number of the chapter.').setRequired(false)
+        )
+        .addIntegerOption(option =>
+            option.setName('verse').setDescription('The number of the verse.').setRequired(false)
+        ),
+    async execute(interaction: CommandInteraction) {
         const int_book = interaction.options.get('book')?.value as string;
         const int_chapter = interaction.options.get('chapter')?.value as number;
         const int_verse = interaction.options.get('verse')?.value as number;
@@ -125,6 +117,6 @@ export default {
             .setDescription(verseText)
             .setFooter(`${book.name} ${chapterNumber}:${verseNumber}`);
 
-        return answer;
+        interaction.reply({ embeds: [answer] });
     },
 } as ICommand;

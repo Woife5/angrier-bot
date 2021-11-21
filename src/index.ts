@@ -1,10 +1,35 @@
-import DiscordJS, { Guild, Intents } from 'discord.js';
+import { Client, Intents, Collection } from 'discord.js';
 import { token } from './config.json';
-import WOKCommands from 'wokcommands';
-import path from 'path';
+import { ICommand } from './interfaces';
+import fs from 'fs';
 
-const client = new DiscordJS.Client({
+const client = new Client({
     intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES, Intents.FLAGS.GUILD_MESSAGE_REACTIONS],
+});
+
+const commands: Collection<string, ICommand> = new Collection();
+const commandFiles = fs.readdirSync('./build/commands').filter(file => file.endsWith('.js'));
+
+for (const file of commandFiles) {
+    const command = require(`./commands/${file}`).default as ICommand;
+    commands.set(command.data.name, command);
+}
+
+client.on('interactionCreate', async interaction => {
+    if (!interaction.isCommand()) return;
+
+    const command = commands.get(interaction.commandName);
+
+    if (!command) {
+        return console.error(`Command ${interaction.commandName} not found.`);
+    }
+
+    try {
+        await command.execute(interaction);
+    } catch (error) {
+        console.error(error);
+        return interaction.reply({ content: 'There was an error while executing this command!', ephemeral: true });
+    }
 });
 
 client.on('ready', () => {
@@ -22,11 +47,8 @@ client.on('ready', () => {
     return;
     //*/
 
-    const commandClient = new WOKCommands(client, {
-        commandDir: path.join(__dirname, 'commands'),
-        testServers: testGuilds,
-        ephemeral: false,
-    });
+    /* Add all commands to all test guilds
+    //*/
 });
 
 client.on('messageCreate', async message => {

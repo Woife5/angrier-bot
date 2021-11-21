@@ -1,18 +1,14 @@
-import { Interaction, MessageEmbed } from 'discord.js';
-import { ICommand } from 'wokcommands';
-import { Tarot } from '../interfaces';
+import { CommandInteraction, MessageEmbed } from 'discord.js';
+import { SlashCommandBuilder } from '@discordjs/builders';
+import { Tarot, ICommand } from '../interfaces';
 const wait = require('util').promisify(setTimeout);
 
 const tarots = require('../../data/angry-tarot.json') as Tarot.ITarot[];
 const angrys = require('../../data/angry-emojis.json');
 
 export default {
-    category: 'Angrycore',
-    description: 'Get your daily angry tarot',
-    slash: true,
-    testOnly: true,
-    cooldown: '23h',
-    callback: async ({ interaction }) => {
+    data: new SlashCommandBuilder().setName('tarot').setDescription('Get your daily tarot card'),
+    async execute(interaction: CommandInteraction) {
         const embed = new MessageEmbed().setColor('DARK_RED').setFields({
             name: 'Angry Tarot',
             value: 'Let me sense your angry',
