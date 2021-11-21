@@ -35,8 +35,6 @@ client.on('interactionCreate', async interaction => {
 client.on('ready', () => {
     console.log('Ready!');
 
-    const testGuilds = ['314440449731592192', '840157171647905802'];
-
     /* Remove all commands from all test guilds
     testGuilds.forEach(async guildId => {
         const guild = client.guilds.cache.get(guildId);
@@ -45,9 +43,6 @@ client.on('ready', () => {
         }
     });
     return;
-    //*/
-
-    /* Add all commands to all test guilds
     //*/
 });
 

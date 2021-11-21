@@ -1,16 +1,20 @@
 {
     "name": "angrier-bot",
-    "version": "1.1.0",
+    "version": "1.2.0",
     "description": "",
     "main": "./build/index.js",
     "scripts": {
         "update": "git pull && tsc && pm2 restart 2",
-        "dev": "tsc && node ."
+        "dev": "tsc && node .",
+        "register": "tsc && node ./build/register-commands.js"
     },
     "keywords": [],
     "author": "",
     "license": "ISC",
     "dependencies": {
+        "@discordjs/builders": "^0.8.2",
+        "@discordjs/rest": "^0.1.0-canary.0",
+        "discord-api-types": "^0.24.0",
         "discord.js": "^13.2.0"
     },
     "devDependencies": {
