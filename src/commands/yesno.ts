@@ -26,6 +26,6 @@ export default {
             .setDescription(`The answer is ${result.answer}. I have spoken.`)
             .setImage(result.image);
 
-        return embed;
+        interaction.reply({ embeds: [embed] });
     },
 } as ICommand;
