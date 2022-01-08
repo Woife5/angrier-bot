@@ -7,12 +7,7 @@ const { names, medienDispositive, geschmacksliste, funStuff } = require('../../d
 const medienKlausur = new Date('2021-07-02T11:00:00');
 
 export default {
-    data: new SlashCommandBuilder()
-        .setName('luhans')
-        .setDescription('Get McLuhans current wisdom.')
-        .addStringOption(option =>
-            option.setName('question').setDescription('Your question to the angry-oracle').setRequired(true)
-        ),
+    data: new SlashCommandBuilder().setName('luhans').setDescription('Get McLuhans current wisdom.'),
     async execute(interaction: CommandInteraction) {
         const embed = new MessageEmbed().setColor('DARK_VIVID_PINK').setTitle('Luhans');
 
