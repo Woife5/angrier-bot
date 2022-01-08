@@ -6,6 +6,19 @@ export namespace Bible {
         [key: string]: number;
     }
 
+    interface IBibleVerse {
+        chapter: number;
+        verse: number;
+        name: string;
+        text: string;
+    }
+
+    interface IBibleChapter {
+        chapter: number;
+        name: string;
+        verses: IBibleVerse[];
+    }
+
     interface IBibleBook {
         translation: 'Elberfelder (1871)';
         abbreviation: 'elberfelder';
