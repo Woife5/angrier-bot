@@ -9,7 +9,7 @@ const medienKlausur = new Date('2021-07-02T11:00:00');
 export default {
     data: new SlashCommandBuilder().setName('luhans').setDescription('Get McLuhans current wisdom.'),
     async execute(interaction: CommandInteraction) {
-        const embed = new MessageEmbed().setColor('DARK_VIVID_PINK').setTitle('Luhans');
+        const embed = new MessageEmbed().setColor('DARK_VIVID_PINK');
 
         switch (getRandomInt(0, 2)) {
             // Case to get fun stuff
