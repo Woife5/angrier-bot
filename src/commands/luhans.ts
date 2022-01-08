@@ -54,7 +54,7 @@ export default {
                     `Hallo, ich bin ${name} und das ist meine momentane, unverständliche Weisheit:`,
                     medienDispositive[getRandomInt(0, medienDispositive.length - 1)]
                 );
-                embed.setAuthor(names);
+                embed.setAuthor(name);
                 break;
             }
 
