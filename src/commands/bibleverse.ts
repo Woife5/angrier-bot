@@ -103,8 +103,8 @@ export default {
         verseText = verseText.replaceAll('Gott', 'Paul');
         verseText = verseText.replaceAll('Christus', 'Felix');
         verseText = verseText.replaceAll('Mose', 'Valentin');
-        verseText = verseText.replaceAll('Priester', 'Roman');
-        verseText = verseText.replaceAll('Diener', 'Irmi');
+        verseText = verseText.replaceAll('Priester', 'Axel');
+        verseText = verseText.replaceAll('Diener', 'Kinder');
         verseText = verseText.replaceAll('Jehovas', 'Angrys');
         verseText = verseText.replaceAll('Jesu Christi', 'Wolfgang Rader');
         verseText = verseText.replaceAll('Engel', 'Axel');
@@ -115,7 +115,9 @@ export default {
             .setColor('YELLOW')
             .setTitle(`Bible Verse`)
             .setDescription(verseText)
-            .setFooter(`${book.name} ${chapterNumber}:${verseNumber}`);
+            .setFooter({
+                text: `${book.name} ${chapterNumber}:${verseNumber}`,
+            });
 
         interaction.reply({ embeds: [answer] });
     },

@@ -18,12 +18,14 @@ export default {
                 'Slash Commands',
                 "This bot uses Slash Commands! Just type a '/' and have a look at all the commands! 😡"
             )
-            .setAuthor(
-                'Angery',
-                'https://cdn.discordapp.com/attachments/314440449731592192/912125148474245221/angry.png',
-                'https://github.com/Woife5/angrier-bot'
-            )
-            .setFooter(`Angrier Bot v${version}`);
+            .setAuthor({
+                name: 'Angry',
+                iconURL: 'https://cdn.discordapp.com/attachments/314440449731592192/912125148474245221/angry.png',
+                url: 'https://github.com/Woife5/angrier-bot',
+            })
+            .setFooter({
+                text: `Angrier Bot v${version}`,
+            });
 
         interaction.reply({ embeds: [embed] });
     },

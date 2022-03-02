@@ -1,6 +1,6 @@
 # Angrier Bot
 
-`Version 1.4.4`
+`Version 1.5.0`
 
 You may know the [Angry Bot](https://github.com/Woife5/angry-bot 'Angry Bot') on GitHub that is accessible via the [Official Angry Discord](https://discord.gg/pZrBRA75wz 'Official Angry Discord'). This bot is a new version written in `TypeScript` insted of `JavaScript`.
 
