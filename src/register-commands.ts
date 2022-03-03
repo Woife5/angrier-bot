@@ -1,10 +1,11 @@
+import { RESTPostAPIApplicationCommandsJSONBody } from 'discord-api-types';
 import fs from 'fs';
 import { token, clientId } from './config.json';
 import { ICommand } from './interfaces';
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 
-const commands: any = [];
+const commands: RESTPostAPIApplicationCommandsJSONBody[] = [];
 const commandFiles = fs.readdirSync('./build/commands').filter(file => file.endsWith('.js'));
 
 for (const file of commandFiles) {
