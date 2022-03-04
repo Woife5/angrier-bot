@@ -47,6 +47,20 @@ export namespace Yesno {
     }
 }
 
+export namespace Catgirl {
+    interface ICatgirlImage {
+        id: string;
+        originalHash: string;
+        tags: string[];
+        nsfw: boolean;
+        createdAt: string;
+    }
+
+    interface ICatgirlResponse {
+        images: ICatgirlImage[];
+    }
+}
+
 export interface ICommand {
     data: Omit<SlashCommandBuilder, 'addSubcommand' | 'addSubcommandGroup'>;
     execute: (interaction: CommandInteraction) => void;
