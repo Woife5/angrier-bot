@@ -14,7 +14,7 @@ for (const file of commandFiles) {
 }
 
 // Comment the next line out to register the commands on every guild (will take a while)
-const testGuilds = ['314440449731592192', '840157171647905802'];
+const testGuilds = ['949336261057994882'];
 const rest = new REST({ version: '9' }).setToken(token);
 
 if (testGuilds) {
