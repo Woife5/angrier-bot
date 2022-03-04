@@ -13,6 +13,7 @@ for (const file of commandFiles) {
     commands.push(command.data.toJSON());
 }
 
+// Comment the next line out to register the commands on every guild (will take a while)
 const testGuilds = ['314440449731592192', '840157171647905802'];
 const rest = new REST({ version: '9' }).setToken(token);
 
